@@ -3,7 +3,7 @@
     @include align-items(flex-start);
     width: 100%;
 
-    .recipient-sidebar {
+    .sidebar_recipient {
         display: none;
         margin-top: 0;
         // Evenly distribute the 30px space between the sidebar & content

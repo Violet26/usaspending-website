@@ -1,6 +1,6 @@
 /**
- * AboutContent.jsx
- * Created by Mike Bray 11/20/2017
+ * ComponentLibraryContent.jsx
+ * Created by Lizzie Salita 9/2/19
  **/
 
 import React from 'react';
@@ -8,67 +8,38 @@ import { find, throttle } from 'lodash';
 import { scrollToY } from 'helpers/scrollToHelper';
 import * as StickyHeader from 'components/sharedComponents/stickyHeader/StickyHeader';
 
-import Sidebar from '../sharedComponents/sidebar/Sidebar';
+import Sidebar from 'components/sharedComponents/sidebar/Sidebar';
+import Pagination from 'components/sharedComponents/Pagination';
 
-import Mission from './Mission';
-import Background from './Background';
-import DataSources from './DataSources';
-import DataQuality from './DataQuality';
-import MoreInfo from './MoreInfo';
-import Contact from './Contact';
-import Development from './Development';
-import Licensing from './Licensing';
 
-const aboutSections = [
+const componentLibrarySections = [
     {
-        section: 'mission',
-        label: 'Mission'
+        section: 'buttons',
+        label: 'Buttons'
     },
     {
-        section: 'background',
-        label: 'Background'
-    },
-    {
-        section: 'data-sources',
-        label: 'Data Sources'
-    },
-    {
-        section: 'data-quality',
-        label: 'Data Quality'
-    },
-    {
-        section: 'development',
-        label: 'Development and Releases'
-    },
-    {
-        section: 'licensing',
-        label: 'Licensing'
-    },
-    {
-        section: 'more-info',
-        label: 'More Information'
-    },
-    {
-        section: 'contact',
-        label: 'Contact'
+        section: 'pagination',
+        label: 'Pagination'
     }
 ];
 
-export default class AboutContent extends React.Component {
+export default class ComponentLibraryContent extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            activeSection: 'mission',
+            activeSection: 'buttons',
             sectionPositions: [],
             window: {
                 height: 0
-            }
+            },
+            page: 1
         };
 
         this.jumpToSection = this.jumpToSection.bind(this);
         this.highlightCurrentSection = throttle(this.highlightCurrentSection.bind(this), 100);
         this.cacheSectionPositions = throttle(this.cacheSectionPositions.bind(this), 100);
+        this.changePage = this.changePage.bind(this);
     }
 
     componentDidMount() {
@@ -87,9 +58,9 @@ export default class AboutContent extends React.Component {
         // (and when the window resizes) and cache the values
         const sectionPositions = [];
 
-        for (let i = 0; i < aboutSections.length; i++) {
-            const sectionCode = aboutSections[i].section;
-            const domElement = document.getElementById(`about-${sectionCode}`);
+        for (let i = 0; i < componentLibrarySections.length; i++) {
+            const sectionCode = componentLibrarySections[i].section;
+            const domElement = document.getElementById(`component-library-${sectionCode}`);
             if (!domElement) {
                 // couldn't find the element
                 continue;
@@ -119,7 +90,7 @@ export default class AboutContent extends React.Component {
     jumpToSection(section = '') {
         // we've been provided a section to jump to
         // check if it's a valid section
-        const matchedSection = find(aboutSections, {
+        const matchedSection = find(componentLibrarySections, {
             section
         });
 
@@ -133,7 +104,7 @@ export default class AboutContent extends React.Component {
             activeSection: section
         }, () => {
             // scroll to the correct section
-            const sectionDom = document.querySelector(`#about-${section}`);
+            const sectionDom = document.querySelector(`#component-library-${section}`);
             if (!sectionDom) {
                 return;
             }
@@ -148,7 +119,7 @@ export default class AboutContent extends React.Component {
         const windowBottom = windowTop + this.state.window.height;
 
         // determine the section to highlight
-        let activeSection = aboutSections[0].section;
+        let activeSection = componentLibrarySections[0].section;
         let bottomSectionVisible = false;
         const visibleSections = [];
 
@@ -222,26 +193,67 @@ export default class AboutContent extends React.Component {
         });
     }
 
+    changePage(page) {
+        this.setState({
+            page
+        });
+    }
+
     render() {
         return (
-            <div className="about-content-wrapper">
-                <div className="sidebar sidebar_about">
+            <div className="component-library-content-wrapper">
+                <div className="sidebar sidebar_component-library">
                     <Sidebar
                         active={this.state.activeSection}
-                        sections={aboutSections}
+                        pageName="component-library"
+                        sections={componentLibrarySections}
                         jumpToSection={this.jumpToSection}
                         stickyHeaderHeight={StickyHeader.stickyHeaderHeight} />
                 </div>
-                <div className="about-content">
-                    <div className="about-padded-content">
-                        <Mission />
-                        <Background />
-                        <DataSources />
-                        <DataQuality />
-                        <Development />
-                        <Licensing />
-                        <MoreInfo />
-                        <Contact />
+                <div className="component-library-content">
+                    <div id="component-library-buttons">
+                        <h3>Buttons</h3>
+                        <input className="usa-button" type="submit" value="Primary Button" />
+                        <input className="usa-button-primary-alt" type="submit" value="Primary-alt Button" />
+                        <input className="usa-button-secondary" type="submit" value="Secondary Button" />
+                        <input className="usa-button-secondary-danger" type="submit" value="Secondary-danger Button" />
+                        <input className="usa-button-gray" type="submit" value="Gray Button" />
+                        <input className="usa-button-outline" type="submit" value="Outline Button" />
+                        <input className="usa-button-outline-inverse" type="submit" value="Outline-inverse Button" />
+                        <input className="usa-button-disabled" type="submit" value="Disabled Button" />
+                        <h4>Code</h4>
+                        <pre>
+                            {`
+<input className="usa-button" type="submit" value="Primary Button" />
+<input className="usa-button-primary-alt" type="submit" value="Primary-alt Button" />
+<input className="usa-button-secondary" type="submit" value="Secondary Button" />
+<input className="usa-button-secondary-danger" type="submit" value="Secondary-danger Button" />
+<input className="usa-button-gray" type="submit" value="Gray Button" />
+<input className="usa-button-outline" type="submit" value="Outline Button" />
+<input className="usa-button-outline-inverse" type="submit" value="Outline-inverse Button" />
+<input className="usa-button-disabled" type="submit" value="Disabled Button" />
+                            `}
+                        </pre>
+                    </div>
+                    <div className="component-library-pagination">
+                        <h3>Pagination</h3>
+                        <Pagination
+                            onChangePage={this.changePage}
+                            pageNumber={this.state.page}
+                            totalItems={50}
+                            pageSize={5} />
+                        <h4>Code</h4>
+                        <pre>
+                            {`
+import Pagination from 'components/sharedComponents/Pagination';
+...
+<Pagination
+    onChangePage={this.changePage}
+    pageNumber={this.state.page}
+    totalItems={50}
+    pageSize={5} />
+                            `}
+                        </pre>
                     </div>
                 </div>
             </div>

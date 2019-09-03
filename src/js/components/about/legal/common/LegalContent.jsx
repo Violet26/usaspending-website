@@ -37,7 +37,7 @@ export default class LegalContent extends React.Component {
     render() {
         return (
             <div className="about-content-wrapper">
-                <div className="about-sidebar">
+                <div className="sidebar sidebar_about">
                     <Sidebar
                         active={this.props.activePage}
                         pageName="about"

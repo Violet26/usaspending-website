@@ -208,10 +208,9 @@ export default class StateContent extends React.Component {
     render() {
         return (
             <div className="state-content-wrapper">
-                <div className="state-sidebar">
+                <div className="sidebar sidebar_state">
                     <Sidebar
                         active={this.state.activeSection}
-                        pageName="state"
                         sections={stateSections}
                         jumpToSection={this.jumpToSection}
                         stickyHeaderHeight={StickyHeader.stickyHeaderHeight}

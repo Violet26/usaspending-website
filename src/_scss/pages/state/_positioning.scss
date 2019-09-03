@@ -3,7 +3,7 @@
     @include align-items(flex-start);
     width: 100%;
 
-    .state-sidebar {
+    .sidebar_state {
         display: none;
         margin-top: 0;
         // Evenly distribute the 30px space between the sidebar & content

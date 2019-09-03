@@ -12,7 +12,6 @@ import SidebarLink from './SidebarLink';
 
 const propTypes = {
     active: PropTypes.string,
-    pageName: PropTypes.string,
     sections: PropTypes.array,
     jumpToSection: PropTypes.func,
     stickyHeaderHeight: PropTypes.number,
@@ -145,7 +144,7 @@ export default class Sidebar extends React.Component {
         return (
             <div>
                 <div
-                    className={`${this.props.pageName}-sidebar-reference ${floatSidebar}`}
+                    className={`sidebar-reference ${floatSidebar}`}
                     ref={(div) => {
                         // this is an empty div that does not float with the page so we can track
                         // the inline/non-floating Y position of the sidebar
@@ -154,7 +153,7 @@ export default class Sidebar extends React.Component {
                     &nbsp;
                 </div>
                 <div
-                    className={`${this.props.pageName}-sidebar-content ${floatSidebar}`}
+                    className={`sidebar-content ${floatSidebar}`}
                     ref={(div) => {
                         this.div = div;
                     }}>

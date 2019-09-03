@@ -1,7 +1,7 @@
 .agency-content-wrapper {
     @include span-columns(16);
 
-    .agency-sidebar {
+    .sidebar_agency {
         display: none;
         margin-top: 0;
         @include media($medium-screen) {

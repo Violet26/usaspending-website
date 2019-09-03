@@ -227,10 +227,9 @@ export default class AgencyContent extends React.Component {
 
         return (
             <div className="agency-content-wrapper">
-                <div className="agency-sidebar">
+                <div className="sidebar sidebar_agency">
                     <Sidebar
                         active={this.state.activeSection}
-                        pageName="agency"
                         sections={agencySections}
                         jumpToSection={this.jumpToSection}
                         stickyHeaderHeight={StickyHeader.stickyHeaderHeight} />

@@ -1,10 +1,7 @@
-.usa-da-state-page {
+.usa-da-component-library {
     @import "all";
     @import "layouts/default/default";
     @import "layouts/default/stickyHeader/header";
-
-    $color-gray-border: #D8D8D8;
-    $color-blue-background: #F5FBFC;
 
     .main-content {
         @import "../../mixins/fullSectionWrap";
@@ -16,10 +13,5 @@
         @import "elements/_divider";
 
         @import "../../components/sidebar";
-        .sidebar_state {
-            @import "./fyPicker";
-        }
-
-        @import "./footer/footer";
     }
 }

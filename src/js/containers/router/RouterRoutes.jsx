@@ -142,7 +142,7 @@ const routes = {
             parent: '/style',
             component: (cb) => {
                 require.ensure([], (require) => {
-                    cb(require('components/testStyles/TestStylePage').default);
+                    cb(require('components/componentLibrary/ComponentLibraryPage').default);
                 });
             }
         },

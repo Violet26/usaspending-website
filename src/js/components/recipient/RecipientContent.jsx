@@ -206,7 +206,7 @@ export default class RecipientContent extends React.Component {
     render() {
         return (
             <div className="recipient-content-wrapper">
-                <div className="recipient-sidebar">
+                <div className="sidebar_recipient">
                     <Sidebar
                         active={this.state.activeSection}
                         pageName="recipient"
